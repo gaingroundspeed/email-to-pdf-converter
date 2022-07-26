@@ -139,6 +139,10 @@ public class MimeMessageParser {
                     return;
                 }
 
+                if (p.isMimeType("text/plain")) {
+                    stringContent = stringContent.replace("<", "&lt;").replace(">", "&gt;");
+                }
+
                 // use text/plain entries only when we found nothing before
                 if (result.getEntry().isEmpty() || p.isMimeType("text/html")) {
                     String newEntry = stringContent.concat(result.getEntry());
